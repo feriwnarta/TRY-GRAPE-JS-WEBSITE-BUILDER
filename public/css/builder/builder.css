@@ -1,0 +1,56 @@
+/* Let's highlight canvas boundaries */
+#gjs {
+    border-left: 1px solid var(--neutral-40, #e0e0e0);
+    border-right: 1px solid var(--neutral-40, #e0e0e0);
+}
+
+/* Primary color for the background */
+.gjs-one-bg {
+    background: var(--neutral-10, #fff);
+}
+
+/* Secondary color for the text color */
+.gjs-two-color {
+    color: var(--neutral-90, re) d;
+}
+
+/* Reset some default styling */
+.gjs-cv-canvas {
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.panel__top {
+    padding: 1rem 3rem;
+    width: 100%;
+    display: flex;
+    position: initial;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.panel__basic-actions {
+    position: initial;
+}
+
+.editor-canvas {
+    flex-grow: 1;
+}
+
+.panel__right {
+    padding: 0;
+    width: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+.panel__switcher {
+    position: initial;
+}
+
+.builder__nav {
+    border-bottom: 1px solid var(--neutral-40, #e0e0e0);
+}
+
+
