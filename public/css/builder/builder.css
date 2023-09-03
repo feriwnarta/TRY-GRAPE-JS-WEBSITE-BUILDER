@@ -34,6 +34,12 @@
     position: initial;
 }
 
+.gjs-block {
+    width: auto;
+    height: auto;
+    min-height: auto;
+}
+
 .editor-canvas {
     flex-grow: 1;
 }
@@ -52,5 +58,3 @@
 .builder__nav {
     border-bottom: 1px solid var(--neutral-40, #e0e0e0);
 }
-
-

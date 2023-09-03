@@ -1,3 +1,19 @@
+const customComponents = (editor) => {
+    // Komponen Paragraf
+    editor.Components.addType('cmp-p', {
+        tagName: 'p', // Menggunakan tag <p>
+        model: {
+            defaults: {
+                stylable: ['color'],
+                content: 'Teks paragraf Anda di sini', // Isi teks default
+            }
+        }
+    });
+};
+
+
+
+
 const editor = grapesjs.init({
     // Indicate where to init the editor. You can also pass an HTMLElement
     container: '#gjs',
@@ -5,6 +21,7 @@ const editor = grapesjs.init({
     // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
     fromElement: true,
     width: 'auto',
+    plugins: [customComponents],
     // Size of the editor
     // Disable the storage manager for the moment
     storageManager: false,
@@ -19,54 +36,166 @@ const editor = grapesjs.init({
             el: '.panel__right',
         }]
     },
+
+    blockManager: {
+        appendTo: '.blocks',
+        blocks: [
+            {
+                id: 'section', // id is mandatory
+                label: '<b>Section</b>', // You can use HTML/SVG inside labels
+                attributes: { class: 'gjs-block-section' },
+                content: `<section>
+              <h1>This is a simple title</h1>
+              <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+            </section>`,
+            }, {
+                id: 'text',
+                label: 'Text',
+                content: '<div data-gjs-type="text">Insert your text here</div>',
+            }, {
+                id: 'image',
+                label: 'Image',
+                // Select the component once it's dropped
+                select: true,
+                // You can pass components as a JSON instead of a simple HTML string,
+                // in this case we also use a defined component type `image`
+                content: { type: 'image' },
+                // This triggers `active` event on dropped components and the `image`
+                // reacts by opening the AssetManager
+                activate: true,
+            }
+        ]
+    },
+
     styleManager: {
         appendTo: '.styles-container',
         sectors: [
             {
-                open: true,
-                name: 'Edit',
-                // Use built-in properties
-                buildProps: ['font-family', 'font-size', 'font-weight', 'color', 'background-color', 'text-align',  'Ukuran', 'Margin', 'Padding'],
+                id: 'firstSector',
+                name: 'First sector',
                 properties: [
-                    {
-                        type: 'composite',
-                        property: 'Ukuran',
-                        label: 'Ukuran',
-                        properties: [
-                            { type: 'number', units: ['px'], default: '0', property: 'width', label: 'Lebar' },
-                            { type: 'number', units: ['px'], default: '0', property: 'height', label: 'Tinggi' },
-                        ]
-                    },
-                    {
-                        type: 'composite',
-                        property: 'Margin',
-                        label: 'Margin',
-                        properties: [
-                            { type: 'number', units: ['px'], default: '0', property: 'margin-top', label: 'Margin Atas' },
-                            { type: 'number', units: ['px'], default: '0', property: 'margin-bottom', label: 'Margin Bawah' },
-                            { type: 'number', units: ['px'], default: '0', property: 'margin-left', label: 'Margin Kiri' },
-                            { type: 'number', units: ['px'], default: '0', property: 'margin-right', label: 'Margin Kanan' },
-                        ]
-                    },
-                    {
-                        type: 'composite',
-                        property: 'Padding',
-                        label: 'Padding',
-                        properties: [
-                            { type: 'number', units: ['px'], default: '0', property: 'padding-top', label: 'Padding Atas' },
-                            { type: 'number', units: ['px'], default: '0', property: 'padding-bottom', label: 'Padding Bawah' },
-                            { type: 'number', units: ['px'], default: '0', property: 'padding-left', label: 'Padding Kiri' },
-                            { type: 'number', units: ['px'], default: '0', property: 'padding-right', label: 'Padding Kanan' },
-                        ]
-                    },
-                ]
+                    'width', 'min-width',
+                    'height', 'min-height',
+                ],
             },
-        ]
+            {
+                id: 'secondSector',
+                name: 'Second sector',
+                properties: [
+                    'color', 'font-size',
+                ],
+            },
+        ],
     },
+
+    // styleManager: {
+    //     appendTo: '.styles-container',
+    //     sectors: [
+    //         {
+    //             open: true,
+    //             name: 'Edit',
+    //             // Use built-in properties
+    //             buildProps: ['font-family', 'font-size', 'font-weight', 'color', 'background-color', 'text-align', 'Ukuran', 'Margin', 'Padding'],
+    //             properties: [
+    //                 {
+    //                     type: 'composite',
+    //                     property: 'Ukuran',
+    //                     label: 'Ukuran',
+    //                     properties: [
+    //                         { type: 'number', units: ['px'], default: '0', property: 'width', label: 'Lebar' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'height', label: 'Tinggi' },
+    //                     ]
+    //                 },
+    //                 {
+    //                     type: 'composite',
+    //                     property: 'Margin',
+    //                     label: 'Margin',
+    //                     properties: [
+    //                         { type: 'number', units: ['px'], default: '0', property: 'margin-top', label: 'Margin Atas' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'margin-bottom', label: 'Margin Bawah' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'margin-left', label: 'Margin Kiri' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'margin-right', label: 'Margin Kanan' },
+    //                     ]
+    //                 },
+    //                 {
+    //                     type: 'composite',
+    //                     property: 'Padding',
+    //                     label: 'Padding',
+    //                     properties: [
+    //                         { type: 'number', units: ['px'], default: '0', property: 'padding-top', label: 'Padding Atas' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'padding-bottom', label: 'Padding Bawah' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'padding-left', label: 'Padding Kiri' },
+    //                         { type: 'number', units: ['px'], default: '0', property: 'padding-right', label: 'Padding Kanan' },
+    //                     ]
+    //                 },
+    //             ]
+    //         },
+    //     ]
+    // },
+
+
     // ...
 });
+
+// editor.DomComponents.addComponent({ type: 'cmp-p' });
+
+// Fungsi untuk mendeteksi komponen berdasarkan tag name
+function detectComponentsByTagName(tagName) {
+    const components = editor.DomComponents.getComponents();
+    const detectedComponents = [];
+
+    components.forEach((component) => {
+        if (component.get('tagName') === tagName) {
+            detectedComponents.push(component);
+        }
+    });
+
+    return detectedComponents;
+}
+
+// Event listener ketika komponen <p> diklik
+editor.on('component:selected', (component) => {
+
+    // Cek apakah komponen adalah tag <p>
+    if (component && component.get('tagName') === 'p') {
+
+
+        // Menghapus sektor "First sector" dari Style Manager
+        const firstSector = editor.StyleManager.getSector('firstSector');
+
+        if (firstSector) {
+            editor.StyleManager.removeSector('firstSector');
+        }
+
+        // Menambahkan properti "text-align" ke "Second sector" dari Style Manager
+        const secondSector = editor.StyleManager.getSector('secondSector');
+        if (secondSector) {
+            secondSector.properties.push({
+                label: 'Minimum height',
+                property: 'min-height',
+                type: 'select',
+                default: '100px',
+                options: [
+                    { id: '100px', label: '100' },
+                    { id: '200px', label: '200' },
+                ],
+            }, { at: 0 });
+        }
+
+        // Refresh Style Manager untuk mencerminkan perubahan
+        editor.StyleManager.render();
+    }
+});
+
+console.log('Komponen dengan tag <p>:', detectComponentsByTagName('p'));
+
+// editor.DomComponents.addComponent({ type: 'cmp-a' });
 
 editor.Panels.addPanel({
     id: 'panel-top',
     el: '.panel__top',
 });
+
+
+
+

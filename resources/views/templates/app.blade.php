@@ -87,19 +87,7 @@
         <div class="col-8">
             <div class="editor-canvas">
                 <div id="gjs">
-                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-                        rel="stylesheet"
-                        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-                        crossorigin="anonymous">
-
-                    <ul class="list-group">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                    </ul>
-
+                    <p>asdasd</p>
                 </div>
             </div>
         </div>
