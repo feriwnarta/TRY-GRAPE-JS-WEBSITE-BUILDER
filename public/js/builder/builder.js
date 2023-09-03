@@ -22,6 +22,7 @@ const editor = grapesjs.init({
     fromElement: true,
     width: 'auto',
     plugins: [customComponents],
+
     // Size of the editor
     // Disable the storage manager for the moment
     storageManager: false,
@@ -36,36 +37,49 @@ const editor = grapesjs.init({
             el: '.panel__right',
         }]
     },
-
     blockManager: {
-        appendTo: '.blocks',
-        blocks: [
-            {
-                id: 'section', // id is mandatory
-                label: '<b>Section</b>', // You can use HTML/SVG inside labels
-                attributes: { class: 'gjs-block-section' },
-                content: `<section>
-              <h1>This is a simple title</h1>
-              <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
-            </section>`,
-            }, {
-                id: 'text',
-                label: 'Text',
-                content: '<div data-gjs-type="text">Insert your text here</div>',
-            }, {
-                id: 'image',
-                label: 'Image',
-                // Select the component once it's dropped
-                select: true,
-                // You can pass components as a JSON instead of a simple HTML string,
-                // in this case we also use a defined component type `image`
-                content: { type: 'image' },
-                // This triggers `active` event on dropped components and the `image`
-                // reacts by opening the AssetManager
-                activate: true,
-            }
-        ]
+        appendTo: '.blocks'
     },
+
+    //     blockManager: {
+    //         appendTo: '.blocks',
+    //         blocks: [
+    //             {
+    //                 id: 'Hero', // id is mandatory
+    //                 label: 'Hero', // You can use HTML/SVG inside labels
+    //                 attributes: { class: 'gjs-block-section' },
+    //                 content:
+    //                     `
+    //                 <div class="px-4 py-5 my-5 text-center">
+    //     <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    //     <h1 class="display-5 fw-bold">Centered hero</h1>
+    //     <div class="col-lg-6 mx-auto">
+    //       <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+    //       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    //         <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+    //         <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+    //       </div>
+    //     </div>
+    //   </div>
+    //                 `,
+    //             }, {
+    //                 id: 'text',
+    //                 label: 'Text',
+    //                 content: '<div data-gjs-type="text">Insert your text here</div>',
+    //             }, {
+    //                 id: 'image',
+    //                 label: 'Image',
+    //                 // Select the component once it's dropped
+    //                 select: true,
+    //                 // You can pass components as a JSON instead of a simple HTML string,
+    //                 // in this case we also use a defined component type `image`
+    //                 content: { type: 'image' },
+    //                 // This triggers `active` event on dropped components and the `image`
+    //                 // reacts by opening the AssetManager
+    //                 activate: true,
+    //             }
+    //         ]
+    //     },
 
     styleManager: {
         appendTo: '.styles-container',
@@ -196,6 +210,34 @@ editor.Panels.addPanel({
     el: '.panel__top',
 });
 
+
+let btnBlock = document.getElementsByClassName('block')[0]; // Mengambil elemen pertama dengan kelas 'block'
+
+btnBlock.addEventListener('click', () => {
+
+    
+
+    editor.BlockManager.add('h1-block', {
+        id: 'Hero', // id is mandatory
+        label: 'Hero', // You can use HTML/SVG inside labels
+        attributes: { class: 'gjs-block-section' },
+        content:
+            `
+                        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h1 class="display-5 fw-bold">Centered hero</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+              </div>
+            </div>
+          </div>
+                        `,
+    });
+
+});
 
 
 

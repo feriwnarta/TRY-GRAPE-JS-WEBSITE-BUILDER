@@ -24,7 +24,8 @@
 
         {{-- Sidebar --}}
         <div class="col-2 sidebar">
-
+            <button class="btn btn-primary block" type="submit">Button</button>
+            <div class="blocks"></div>
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
@@ -87,9 +88,14 @@
         <div class="col-8">
             <div class="editor-canvas">
                 <div id="gjs">
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+                        crossorigin="anonymous">
                     <p>asdasd</p>
                 </div>
             </div>
+
         </div>
 
 
